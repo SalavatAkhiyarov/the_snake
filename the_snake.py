@@ -107,8 +107,8 @@ class Snake(GameObject):
         list.insert(
             self.positions,
             0,
-            (head[0] + 20 * self.direction[0], 
-            head[1] + 20 * self.direction[1]),
+            (head[0] + 20 * self.direction[0],
+             head[1] + 20 * self.direction[1]),
         )
 
         if len(self.positions) > self.length:
