@@ -44,7 +44,7 @@ class GameObject:
     От него будут создаваться дочерние.
     """
 
-    def __init__(self,body_color):
+    def __init__(self, body_color):
         self.position = (SCREEN_WIDTH // 2, SCREEN_HEIGHT // 2)
         self.body_color = body_color
 
@@ -56,19 +56,19 @@ class GameObject:
 class Apple(GameObject):
     """Класс, который отвечает за яблоко."""
 
-    def __init__(self,use_positions = None):
+    def __init__(self, use_positions=None):
         if use_positions is None:
             use_positions = []
         super().__init__(APPLE_COLOR)
         self.position = self.randomize_position(use_positions)
 
-    def randomize_position(self,use_positions):
+    def randomize_position(self, use_positions):
         """Установка случайного положения яблока."""
         while True:
             new_x = (randint(0, GRID_WIDTH - 1)) * GRID_SIZE
             new_y = (randint(0, GRID_HEIGHT - 1)) * GRID_SIZE
-            if (SCREEN_WIDTH,SCREEN_HEIGHT) not in use_positions:
-                return new_x,new_y
+            if (SCREEN_WIDTH, SCREEN_HEIGHT) not in use_positions:
+                return new_x, new_y
 
     def draw(self):
         """Отрисовка яблока."""
@@ -95,14 +95,14 @@ class Snake(GameObject):
 
     def move(self):
         """Обновление позиции змейки."""
-        head_1,head_2 = self.get_head_position()
-        x,y = self.direction
+        head_1, head_2 = self.get_head_position()
+        x, y = self.direction
 
         self.positions.insert(
             0,
             (
-            (head_1 + x * GRID_SIZE) % SCREEN_WIDTH,
-            (head_2 + y * GRID_SIZE) % SCREEN_HEIGHT,
+                (head_1 + x * GRID_SIZE) % SCREEN_WIDTH,
+                (head_2 + y * GRID_SIZE) % SCREEN_HEIGHT,
             )
         )
 
@@ -117,7 +117,8 @@ class Snake(GameObject):
             pygame.draw.rect(screen, BORDER_COLOR, rect, 1)
 
         # Отрисовка головы змейки
-        head_rect = pygame.Rect(self.get_head_position(), (GRID_SIZE, GRID_SIZE))
+        head_rect = pygame.Rect(
+            self.get_head_position(), (GRID_SIZE, GRID_SIZE))
         pygame.draw.rect(screen, self.body_color, head_rect)
         pygame.draw.rect(screen, BORDER_COLOR, head_rect, 1)
 
