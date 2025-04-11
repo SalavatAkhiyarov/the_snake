@@ -44,7 +44,7 @@ class GameObject:
     От него будут создаваться дочерние.
     """
 
-    def __init__(self, body_color):
+    def __init__(self, body_color=None):
         self.position = (SCREEN_WIDTH // 2, SCREEN_HEIGHT // 2)
         self.body_color = body_color
 
@@ -67,7 +67,7 @@ class Apple(GameObject):
         while True:
             new_x = (randint(0, GRID_WIDTH - 1)) * GRID_SIZE
             new_y = (randint(0, GRID_HEIGHT - 1)) * GRID_SIZE
-            if (SCREEN_WIDTH, SCREEN_HEIGHT) not in use_positions:
+            if (new_x,new_y) not in use_positions:
                 return new_x, new_y
 
     def draw(self):
